@@ -1,0 +1,2 @@
+# Segul
+My Segula
