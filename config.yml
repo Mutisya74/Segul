@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: "title", widget: "string" }
+      - { label: "Price (KES)", name: "price", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Women", "Men", "Signature", "Custom", "Thrifted", "New"] }
+      - { label: "Gender", name: "gender", widget: "select", options: ["Women", "Men", "Unisex"] }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Product Image", name: "image", widget: "image", required: false }
+      - { label: "Available", name: "available", widget: "boolean", default: true }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "WhatsApp Message", name: "whatsapp_msg", widget: "string", hint: "Pre-filled WhatsApp message for this product" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Faith & Fashion", "Style Guide", "Life & Grace", "Faith Corner", "Devotional"] }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Scripture Reference", name: "scripture", widget: "string", required: false }

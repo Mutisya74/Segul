@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Segula – The Home of Treasured Possessions</title>
+<meta name="description" content="Segula – Elegance, Modesty & Grace. Curated fashion rooted in purpose. Palazzo pants, custom tailoring, personal styling. Based in Ongata Rongai, Kenya. Delivery nationwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- marked.js for parsing markdown blog posts -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+:root {
+  --brown: #6B4C3B;
+  --brown-light: #A07850;
+  --brown-dark: #3E2A1E;
+  --brown-pale: #F5EDE4;
+  --green: #7A9B72;
+  --green-light: #A8C4A0;
+  --green-pale: #EBF2E8;
+  --cream: #FAF6F0;
+  --text: #2C1F18;
+  --text-muted: #7A6458;
+  --white: #FFFFFF;
+  --whatsapp: #25D366;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--cream); color: var(--text); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,246,240,0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(107,76,59,0.12);
+  padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px;
+}
+.nav-logo { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; letter-spacing: 0.04em; color: var(--brown-dark); text-decoration: none; }
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brown); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+.nav-links a:hover { color: var(--green); }
+.nav-wa { background: var(--whatsapp); color: white !important; padding: 0.45rem 1rem; border-radius: 2px; display: flex; align-items: center; gap: 0.4rem; }
+.nav-wa:hover { background: #1ebe5a; color: white !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--brown); }
+
+/* ── MOBILE MENU ── */
+.mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: var(--cream); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--brown-dark); text-decoration: none; }
+.mobile-close { position: absolute; top: 1.5rem; right: 5vw; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--brown); }
+
+/* ── HERO ── */
+#home {
+  min-height: 100vh; display: flex; align-items: center;
+  background: linear-gradient(135deg, var(--brown-pale) 0%, var(--green-pale) 100%);
+  padding: 100px 5vw 60px; position: relative; overflow: hidden;
+}
+#home::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236B4C3B' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content { position: relative; max-width: 640px; }
+.hero-badge { display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); border: 1px solid var(--green-light); padding: 0.3rem 1rem; margin-bottom: 1.8rem; font-weight: 400; }
+.hero-content h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; line-height: 1.15; color: var(--brown-dark); margin-bottom: 1.4rem; }
+.hero-content h1 em { color: var(--green); font-style: italic; }
+.hero-content p { font-size: 1rem; color: var(--text-muted); max-width: 480px; margin-bottom: 2.4rem; line-height: 1.8; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--brown); color: var(--cream); padding: 0.85rem 2rem; font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-weight: 400; border: none; cursor: pointer; transition: background 0.2s; display: inline-block; }
+.btn-primary:hover { background: var(--brown-dark); }
+.btn-outline { background: transparent; color: var(--brown); border: 1px solid var(--brown); padding: 0.85rem 2rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-weight: 400; transition: 0.2s; display: inline-block; }
+.btn-outline:hover { background: var(--brown); color: var(--cream); }
+.btn-wa { background: var(--whatsapp); color: white; padding: 0.85rem 2rem; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; font-weight: 400; transition: background 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: none; cursor: pointer; }
+.btn-wa:hover { background: #1ebe5a; }
+.hero-visual { position: absolute; right: 0; top: 0; bottom: 0; width: 45%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.hero-ornament { width: min(380px, 90%); aspect-ratio: 3/4; border: 1px solid rgba(107,76,59,0.2); position: relative; }
+.hero-ornament::before { content: ''; position: absolute; inset: 16px; border: 1px solid rgba(122,155,114,0.3); }
+.hero-ornament-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
+.hero-monogram { font-family: var(--serif); font-size: 7rem; font-weight: 300; color: var(--brown-light); line-height: 1; opacity: 0.5; }
+.hero-tagline { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--brown); text-align: center; line-height: 1.6; padding: 0 1.5rem; }
+
+/* ── SECTIONS ── */
+section { padding: 100px 5vw; }
+.section-label { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 0.8rem; font-weight: 400; }
+.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--brown-dark); line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; color: var(--green); }
+.section-sub { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; line-height: 1.8; }
+.divider { width: 60px; height: 1px; background: linear-gradient(90deg, var(--brown-light), var(--green-light)); margin: 1.6rem 0; }
+
+/* ── ABOUT ── */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-values { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2.4rem; }
+.value-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+.value-icon { width: 42px; height: 42px; border-radius: 50%; background: var(--green-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--serif); font-size: 1.2rem; color: var(--green); }
+.value-item h4 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--brown-dark); margin-bottom: 0.2rem; }
+.value-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+.about-verse { background: var(--brown-pale); padding: 3rem; position: relative; overflow: hidden; }
+.about-verse::before { content: '\201C'; font-family: var(--serif); font-size: 12rem; color: var(--brown-light); position: absolute; top: -2rem; left: 1rem; line-height: 1; opacity: 0.3; }
+.about-verse blockquote { font-family: var(--serif); font-size: 1.4rem; font-style: italic; color: var(--brown-dark); line-height: 1.7; position: relative; margin-bottom: 1rem; }
+.about-verse cite { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brown-light); font-style: normal; }
+
+/* ── SHOP ── */
+#shop { background: var(--cream); }
+.shop-header { max-width: 1200px; margin: 0 auto 3rem; }
+.collection-tabs { display: flex; gap: 0; margin-top: 2rem; overflow-x: auto; border-bottom: 1px solid rgba(107,76,59,0.15); }
+.tab-btn { padding: 0.6rem 1.4rem; border: none; background: none; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: 0.2s; white-space: nowrap; }
+.tab-btn.active { color: var(--brown); border-bottom-color: var(--brown); }
+.tab-btn:hover { color: var(--brown); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.product-card { background: var(--white); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(62,42,30,0.1); }
+.product-img { aspect-ratio: 3/4; background: var(--brown-pale); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; }
+.product-img-placeholder { font-family: var(--serif); font-size: 3rem; color: var(--brown-light); opacity: 0.4; }
+.product-badge { position: absolute; top: 12px; left: 12px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--brown); color: var(--cream); padding: 0.25rem 0.6rem; }
+.product-badge.signature { background: var(--brown); }
+.product-badge.custom { background: var(--brown-dark); }
+.product-badge.new { background: var(--green); }
+.product-badge.thrifted { background: var(--brown-light); }
+.product-info { padding: 1.2rem; }
+.product-info h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--brown-dark); margin-bottom: 0.3rem; }
+.product-info p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6; }
+.product-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.product-price { font-size: 0.95rem; font-weight: 500; color: var(--brown); }
+.wa-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: var(--whatsapp); color: white;
+  padding: 0.45rem 0.9rem; font-size: 0.72rem; letter-spacing: 0.06em;
+  text-transform: uppercase; text-decoration: none; font-weight: 400;
+  transition: background 0.2s; border: none; cursor: pointer;
+}
+.wa-btn:hover { background: #1ebe5a; }
+.wa-icon { width: 14px; height: 14px; fill: white; }
+.products-empty { text-align: center; padding: 3rem; color: var(--text-muted); font-family: var(--serif); font-size: 1.2rem; font-style: italic; grid-column: 1/-1; }
+.products-loading { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.9rem; grid-column: 1/-1; }
+
+/* ── SERVICES ── */
+#services { background: var(--brown-dark); }
+#services .section-title { color: var(--cream); }
+#services .section-label { color: var(--green-light); }
+#services .section-sub { color: rgba(250,246,240,0.65); }
+#services .divider { background: linear-gradient(90deg, var(--brown-light), var(--green)); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 3rem auto 0; }
+.service-card { border: 1px solid rgba(250,246,240,0.12); padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.2s, background 0.2s; }
+.service-card:hover { border-color: var(--green); background: rgba(122,155,114,0.08); }
+.service-num { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: rgba(250,246,240,0.08); position: absolute; top: 0.5rem; right: 1rem; line-height: 1; }
+.service-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+.service-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; }
+.service-card p { font-size: 0.88rem; color: rgba(250,246,240,0.6); line-height: 1.7; }
+.services-wa { text-align: center; margin-top: 3rem; }
+.services-wa p { color: rgba(250,246,240,0.6); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+/* ── DELIVERY ── */
+#delivery { background: var(--green-pale); border-top: 1px solid rgba(122,155,114,0.3); border-bottom: 1px solid rgba(122,155,114,0.3); padding: 60px 5vw; }
+.delivery-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 4rem; flex-wrap: wrap; }
+.delivery-text { flex: 1; min-width: 280px; }
+.delivery-text h2 { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--brown-dark); margin-bottom: 0.6rem; }
+.delivery-text p { color: var(--text-muted); font-size: 0.92rem; }
+.delivery-features { display: flex; flex-direction: column; gap: 0.8rem; flex: 1; min-width: 240px; }
+.delivery-feature { display: flex; align-items: center; gap: 0.8rem; font-size: 0.88rem; color: var(--brown); }
+.delivery-feature::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+/* ── BLOG ── */
+#blog { background: var(--white); }
+.blog-header { max-width: 1200px; margin: 0 auto 3rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.blog-card { cursor: pointer; }
+.blog-img { aspect-ratio: 16/9; overflow: hidden; background: var(--brown-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+.blog-img img { width: 100%; height: 100%; object-fit: cover; }
+.blog-img-placeholder { font-family: var(--serif); font-size: 2.5rem; color: var(--brown-light); opacity: 0.35; }
+.blog-cat { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 400; display: block; }
+.blog-cat.faith, .blog-cat.devotional { color: var(--green); }
+.blog-cat.style { color: var(--brown-light); }
+.blog-cat.life { color: var(--brown); }
+.blog-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--brown-dark); line-height: 1.4; margin-bottom: 0.5rem; }
+.blog-excerpt { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+.blog-meta { display: flex; justify-content: space-between; align-items: center; }
+.blog-date { font-size: 0.75rem; color: rgba(122,100,88,0.6); }
+.blog-read { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); font-weight: 400; }
+
+/* ── BLOG POST MODAL ── */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(62,42,30,0.7); padding: 2rem 5vw; overflow-y: auto; }
+.modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+.modal-box { background: var(--white); max-width: 720px; width: 100%; padding: 3rem; position: relative; margin: auto; }
+.modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--brown); }
+.modal-box h2 { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--brown-dark); line-height: 1.3; margin-bottom: 0.8rem; }
+.modal-box .blog-cat { margin-bottom: 1.2rem; }
+.modal-content { font-size: 0.95rem; color: var(--text); line-height: 1.9; }
+.modal-content h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--brown-dark); margin: 2rem 0 0.8rem; }
+.modal-content p { margin-bottom: 1.2rem; }
+.modal-content em { font-style: italic; }
+.modal-content strong { font-weight: 500; color: var(--brown-dark); }
+.modal-scripture { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--green); border-left: 2px solid var(--green-light); padding-left: 1rem; margin: 1.5rem 0; }
+
+/* ── FAITH ── */
+#faith { background: var(--brown-pale); text-align: center; padding: 100px 5vw; }
+.faith-inner { max-width: 700px; margin: 0 auto; }
+#faith .section-label { display: block; text-align: center; }
+#faith .divider { margin: 1.6rem auto; }
+.verse-of-day { background: var(--white); padding: 2.5rem; margin: 3rem 0 2rem; }
+.verse-of-day blockquote { font-family: var(--serif); font-size: 1.3rem; font-style: italic; color: var(--brown-dark); line-height: 1.7; margin-bottom: 1rem; }
+.verse-of-day cite { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); font-style: normal; }
+.faith-themes { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.faith-tag { border: 1px solid var(--brown-light); padding: 0.4rem 1.1rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown); cursor: pointer; transition: 0.2s; }
+.faith-tag:hover { background: var(--brown); color: var(--cream); }
+
+/* ── CONTACT ── */
+#contact { background: var(--cream); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1000px; margin: 0 auto; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+.contact-item h4 { font-family: var(--serif); font-size: 1rem; font-weight: 400; color: var(--brown-dark); margin-bottom: 0.3rem; }
+.contact-item p, .contact-item a { font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.contact-item a:hover { color: var(--green); }
+.social-links { display: flex; gap: 0.8rem; margin-top: 0.5rem; flex-wrap: wrap; }
+.social-link { border: 1px solid rgba(107,76,59,0.25); padding: 0.4rem 1rem; font-size: 0.78rem; letter-spacing: 0.08em; color: var(--brown); text-decoration: none; transition: 0.2s; }
+.social-link:hover { background: var(--brown); color: var(--cream); border-color: var(--brown); }
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brown-light); }
+.form-group input, .form-group textarea, .form-group select { border: 1px solid rgba(107,76,59,0.2); background: var(--white); padding: 0.75rem 1rem; font-family: var(--sans); font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.2s; appearance: none; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--green); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+/* ── FOOTER ── */
+footer { background: var(--brown-dark); padding: 60px 5vw 30px; color: rgba(250,246,240,0.6); }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand p { margin-top: 1rem; font-size: 0.85rem; line-height: 1.8; max-width: 240px; }
+.footer-col h5 { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); margin-bottom: 1.2rem; font-weight: 400; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col ul li a { color: rgba(250,246,240,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--green-light); }
+.footer-bottom { border-top: 1px solid rgba(250,246,240,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom p { font-size: 0.78rem; }
+.footer-bottom a { color: var(--green-light); text-decoration: none; }
+.footer-wa { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--whatsapp); color: white; padding: 0.5rem 1.2rem; font-size: 0.78rem; text-decoration: none; margin-top: 1rem; }
+
+/* ── FLOATING WA BUTTON ── */
+.float-wa {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--whatsapp); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.float-wa:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+.float-wa svg { width: 28px; height: 28px; fill: white; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-visual { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-col:first-child { grid-column: 1/-1; }
+}
+@media (max-width: 600px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-col:first-child { grid-column: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/254756313220?text=Hi%20Segula!%20I%20visited%20your%20website%20and%20I%27d%20love%20to%20know%20more%20about%20your%20collections." target="_blank" class="float-wa" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Segula<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faith">Faith</a></li>
+    <li>
+      <a href="https://wa.me/254756313220?text=Hi%20Segula!%20I%27d%20like%20to%20place%20an%20order." target="_blank" class="nav-wa">
+        <svg style="width:14px;height:14px;fill:white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order via WhatsApp
+      </a>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#shop" onclick="closeMobile()">Shop</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#blog" onclick="closeMobile()">Blog</a>
+  <a href="#faith" onclick="closeMobile()">Faith</a>
+  <a href="https://wa.me/254756313220" target="_blank" style="color:var(--whatsapp)">WhatsApp Us</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <span class="hero-badge">The Home of Treasured Possessions</span>
+    <h1>Dressed in <em>Elegance,</em><br>Wrapped in Grace</h1>
+    <p>Curated fashion rooted in modesty and grace. From signature palazzo pants to tailored custom pieces — for every soul who carries their worth with dignity.</p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn-primary">Explore Collections</a>
+      <a href="https://wa.me/254756313220?text=Hi%20Segula!%20I%20visited%20your%20website%20and%20I%27d%20love%20to%20browse%20your%20collections." target="_blank" class="btn-wa">
+        <svg style="width:16px;height:16px;fill:white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-ornament">
+      <div class="hero-ornament-text">
+        <div class="hero-monogram">S</div>
+        <p class="hero-tagline">"She is clothed with strength and dignity"<br>— Prov. 31:25</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">Fashion with <em>Purpose</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Segula is more than a clothing brand — it's a movement celebrating the beauty of dressing with intention. Based in Ongata Rongai, Kenya, we serve souls across borders, delivering the treasure of well-crafted fashion to your door.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div><h4>Elegance</h4><p>Every piece is chosen and crafted to embody refined beauty — clothing that honours the person wearing it.</p></div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✿</div>
+          <div><h4>Modesty</h4><p>Inspired by Christian principles of inner worth, our designs honour dignity and grace for all who believe.</p></div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">◇</div>
+          <div><h4>Grace</h4><p>Each collection flows with effortless grace — comfortable, purposeful, and timelessly beautiful.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-verse">
+      <blockquote>"Your beauty should not come from outward adornment… rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit."</blockquote>
+      <cite>1 Peter 3:3–4</cite>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="shop-header">
+    <span class="section-label">Collections</span>
+    <h2 class="section-title">Treasured <em>Pieces</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Thrifted finds, fresh new arrivals, and bespoke custom-made garments — for women and men who value grace in every detail. Order directly on WhatsApp.</p>
+    <div class="collection-tabs">
+      <button class="tab-btn active" onclick="filterProducts('all', this)">All Pieces</button>
+      <button class="tab-btn" onclick="filterProducts('women', this)">Women</button>
+      <button class="tab-btn" onclick="filterProducts('men', this)">Men</button>
+      <button class="tab-btn" onclick="filterProducts('signature', this)">Signature</button>
+      <button class="tab-btn" onclick="filterProducts('custom', this)">Custom</button>
+      <button class="tab-btn" onclick="filterProducts('thrifted', this)">Thrifted</button>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid">
+    <div class="products-loading">Loading collections…</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="max-width:1200px; margin:0 auto;">
+    <span class="section-label">What We Offer</span>
+    <h2 class="section-title">Beyond <em>Clothing</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">We don't just sell clothes — we walk alongside you in your journey toward dressing with elegance and intention.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon">✦</div>
+      <h3>Personal Styling</h3>
+      <p>One-on-one sessions to curate a wardrobe that reflects your personality, body type, and values.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon">◇</div>
+      <h3>Custom Tailoring</h3>
+      <p>From measurements to delivery — we craft pieces made exclusively for you, exactly as you envision.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon">✿</div>
+      <h3>Modest Fashion Consulting</h3>
+      <p>Expert guidance on building a modest yet fashionable wardrobe aligned with your faith and values.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <div class="service-icon">☁</div>
+      <h3>Wardrobe Audit</h3>
+      <p>We help you declutter, reimagine, and rebuild your wardrobe with intention and clarity.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <div class="service-icon">✉</div>
+      <h3>Nationwide Delivery</h3>
+      <p>We are not limited by walls. We deliver anywhere across Kenya and cater to international orders.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <div class="service-icon">♡</div>
+      <h3>Event Dressing</h3>
+      <p>Weddings, church events, graduations — we dress you for your most meaningful moments.</p>
+    </div>
+  </div>
+  <div class="services-wa">
+    <p>Book any service directly via WhatsApp — we'll respond within the hour.</p>
+    <a href="https://wa.me/254756313220?text=Hi%20Segula!%20I%27d%20like%20to%20book%20a%20service." target="_blank" class="btn-wa">
+      <svg style="width:16px;height:16px;fill:white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Book a Service on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<div id="delivery">
+  <div class="delivery-inner">
+    <div class="delivery-text">
+      <h2>We Are Not Limited by Walls</h2>
+      <p>Segula is a borderless experience. Shop from anywhere in Kenya — and beyond. Your treasured pieces come to you.</p>
+    </div>
+    <div class="delivery-features">
+      <div class="delivery-feature">Nationwide delivery across Kenya</div>
+      <div class="delivery-feature">Online-first, fully digital shopping</div>
+      <div class="delivery-feature">Based in Ongata Rongai, Nairobi</div>
+      <div class="delivery-feature">International orders available</div>
+      <div class="delivery-feature">Order &amp; pay via WhatsApp + M-Pesa</div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="blog-header">
+    <div>
+      <span class="section-label">Stories &amp; Reflections</span>
+      <h2 class="section-title">The Segula <em>Journal</em></h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="blog-grid" id="blog-grid">
+    <div class="products-loading">Loading journal…</div>
+  </div>
+</section>
+
+<!-- BLOG POST MODAL -->
+<div class="modal-overlay" id="blog-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <span class="blog-cat" id="modal-cat"></span>
+    <h2 id="modal-title"></h2>
+    <p class="modal-scripture" id="modal-scripture" style="display:none;"></p>
+    <div class="modal-content" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- FAITH CORNER -->
+<section id="faith">
+  <div class="faith-inner">
+    <span class="section-label">Faith Corner</span>
+    <h2 class="section-title">Rooted in <em>His Grace</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Segula was born out of a Christian vision — that beauty, modesty, and elegance can coexist. This corner is our space to share that faith, open to every heart that finds itself here.</p>
+    <div class="verse-of-day">
+      <blockquote>"She is clothed with strength and dignity, and she laughs without fear of the future."</blockquote>
+      <cite>Proverbs 31:25 — Verse of the Season</cite>
+    </div>
+    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.6rem;">Explore reflections, devotionals, and faith-inspired content in our journal — open to all, regardless of background.</p>
+    <div class="faith-themes">
+      <span class="faith-tag">Modesty</span>
+      <span class="faith-tag">Inner Beauty</span>
+      <span class="faith-tag">Grace</span>
+      <span class="faith-tag">Devotionals</span>
+      <span class="faith-tag">Biblical Womanhood</span>
+      <span class="faith-tag">Identity in Christ</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1000px; margin:0 auto 3rem;">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Whether you're ordering, inquiring, booking a styling session, or just saying hello — we'd love to hear from you.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <h4>Location</h4>
+        <p>Ongata Rongai, Nairobi, Kenya<br><em style="font-size:0.82rem; color:var(--green);">Online-based · Delivery Nationwide</em></p>
+      </div>
+      <div class="contact-item">
+        <h4>Email</h4>
+        <a href="mailto:segulaco516@gmail.com">segulaco516@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <h4>WhatsApp / Phone</h4>
+        <a href="https://wa.me/254756313220" target="_blank">0756 313 220</a>
+      </div>
+      <div class="contact-item">
+        <h4>Social Media</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/segulla" target="_blank" class="social-link">Instagram</a>
+          <a href="https://www.tiktok.com/@segulla" target="_blank" class="social-link">TikTok</a>
+          <a href="https://www.facebook.com/segulla" target="_blank" class="social-link">Facebook</a>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">@segulla on all platforms</p>
+      </div>
+      <a href="https://wa.me/254756313220?text=Hi%20Segula!%20I%27d%20like%20to%20get%20in%20touch." target="_blank" class="btn-wa" style="align-self:flex-start; margin-top:0.5rem;">
+        <svg style="width:16px;height:16px;fill:white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message Us on WhatsApp
+      </a>
+    </div>
+    <div>
+      <p style="font-family:var(--serif); font-size:1.4rem; color:var(--brown-dark); line-height:1.6; font-style:italic; margin-bottom:2rem;">"Every order is personal to us. We don't just send a package — we send a piece of care."</p>
+      <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.8; margin-bottom:1.5rem;">The quickest way to reach us is via WhatsApp. Send us a message, tell us what you're looking for, and we'll guide you through our available pieces, custom options, and styling services — personally, one message at a time.</p>
+      <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.8;">You can also email us at <a href="mailto:segulaco516@gmail.com" style="color:var(--green);">segulaco516@gmail.com</a> and we'll respond within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#FAF6F0; text-decoration:none;">Segula<span style="color:#A8C4A0;">.</span></a>
+      <p>The Home of Treasured Possessions. Elegance · Modesty · Grace. Ongata Rongai, Kenya.</p>
+      <a href="https://wa.me/254756313220" target="_blank" class="footer-wa">
+        <svg style="width:14px;height:14px;fill:white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        0756 313 220
+      </a>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#shop">Women's Collection</a></li>
+        <li><a href="#shop">Men's Collection</a></li>
+        <li><a href="#shop">Signature Palazzo</a></li>
+        <li><a href="#shop">Custom Orders</a></li>
+        <li><a href="#shop">Thrifted Finds</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Personal Styling</a></li>
+        <li><a href="#services">Custom Tailoring</a></li>
+        <li><a href="#services">Wardrobe Audit</a></li>
+        <li><a href="#services">Event Dressing</a></li>
+        <li><a href="#delivery">Delivery Info</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#blog">Journal</a></li>
+        <li><a href="#faith">Faith Corner</a></li>
+        <li><a href="https://www.instagram.com/segulla" target="_blank">Instagram @segulla</a></li>
+        <li><a href="https://www.tiktok.com/@segulla" target="_blank">TikTok @segulla</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Segula. All rights reserved. Ongata Rongai, Nairobi, Kenya.</p>
+    <p>Made with grace · <a href="mailto:segulaco516@gmail.com">segulaco516@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+// ── PRODUCT DATA (loaded from products/ folder via fetch on live site)
+// On Netlify, these are read from the markdown files you manage in the CMS admin.
+// For local preview, we use inline data below.
+
+const PRODUCTS = [
+  { title: "Classic Palazzo Pants", price: "KES 2,800", category: "Signature", gender: "Women", description: "Wide-leg, flowy, and effortlessly graceful — the Segula signature piece. Available in multiple fabrics and colours.", available: true, featured: true, whatsapp_msg: "Hi Segula! I'm interested in the Classic Palazzo Pants (KES 2,800). Please share available colours and sizes." },
+  { title: "Bespoke Maxi Dress", price: "From KES 4,500", category: "Custom", gender: "Women", description: "Custom-made to your measurements, fabric choice and vision. Your dream dress, realised.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'd like to order a Custom Bespoke Maxi Dress. Can we discuss fabric options and measurements?" },
+  { title: "Linen Shirt – Men's", price: "KES 1,800", category: "New", gender: "Men", description: "Breathable, modest, effortlessly polished. For the refined man who dresses with purpose.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Men's Linen Shirt (KES 1,800). What sizes are available?" },
+  { title: "Curated Vintage Blouse", price: "KES 950", category: "Thrifted", gender: "Women", description: "A beautiful thrift gem — unique, sustainable, and lovingly preserved.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Vintage Blouse (KES 950). Can you share more photos?" },
+  { title: "Palazzo + Matching Top Set", price: "From KES 5,800", category: "Custom", gender: "Women", description: "The full Segula look — co-ord palazzo pants with a tailored top, made to your spec.", available: true, featured: true, whatsapp_msg: "Hi Segula! I'd love a Custom Palazzo + Matching Top Set. Can we discuss fabric and colour options?" },
+  { title: "Bespoke Suit – Men's", price: "From KES 12,000", category: "Custom", gender: "Men", description: "Custom tailoring for the man who dresses with purpose and dignity. Sharp, modest, timeless.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in a Custom Men's Suit. Can we discuss measurements and fabric?" },
+  { title: "Modest Midi Skirt", price: "KES 1,600", category: "New", gender: "Women", description: "Knee-to-midi length, flowing silhouette. Perfect for church, work, or any occasion.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Modest Midi Skirt (KES 1,600). What colours and sizes are available?" },
+  { title: "Men's Kaftan / Dashiki", price: "KES 2,200", category: "New", gender: "Men", description: "Rooted in African heritage, elevated in finish. A statement of dignified, cultural grace.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Men's Kaftan/Dashiki (KES 2,200). Please share available options." }
+];
+
+const BLOG_POSTS = [
+  { title: "What Does It Mean to Dress with Dignity?", date: "April 2025", category: "Faith & Fashion", excerpt: "Exploring the deeper connection between how we clothe ourselves and the posture of our hearts before God and the world.", scripture: "1 Peter 3:3–4", body: `There is something deeply intentional about the way we dress. Every morning, as we reach into our wardrobes, we are making a quiet statement — not just to the world, but to ourselves.\n\nAt Segula, we believe that clothing is never merely fabric. It is an expression of identity, of values, of the story we are living.\n\n## The Heart Behind the Hemline\n\nThe Apostle Peter wrote: *"Your beauty should not come from outward adornment... rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit."* (1 Peter 3:3–4)\n\nThis is not a call to dress plainly or to hide. It is an invitation to dress with purpose — to let what is on the outside reflect the grace that lives within.\n\n## Modesty Is Not a Limitation\n\nMany people misunderstand modesty as restriction. But we see it as freedom — freedom from the pressure to impress, freedom to move through the world with confidence that is not dependent on exposure.\n\nA well-cut palazzo pant that flows as you walk. A blouse that covers without hiding. A dress that makes you feel like yourself — that is Segula.\n\n## A Daily Practice\n\nDressing with dignity is a daily practice. It asks us to slow down, to be intentional, and to choose pieces that honour who we are becoming — not just who the world wants us to be.\n\nWe would love to walk this journey with you.` },
+  { title: "Styling Palazzo Pants for Every Occasion", date: "March 2025", category: "Style Guide", excerpt: "Our signature piece is more versatile than you think — from Sunday service to a soft evening dinner.", body: `The palazzo pant is the cornerstone of the Segula wardrobe — and for good reason. Wide, flowing, and inherently graceful, it is a garment that works harder than most people realise.\n\n## Sunday Service\n\nPair your palazzos with a fitted blouse or a modest peplum top. A neutral palette — cream, ivory, or soft brown — keeps things reverent without being plain. Add low block heels and a structured bag.\n\n## Work or Office\n\nA tailored blazer over a tucked-in top transforms palazzo pants into office-ready elegance. Choose structured fabrics like crepe or linen for a polished finish.\n\n## Evening Out\n\nThe palazzo is your secret evening weapon. A satin or flowy palazzo in a deep jewel tone, paired with a simple camisole top and heeled sandals, is effortlessly striking.\n\n## Casual Days\n\nOversized linen shirt, tucked in loosely at the front. White sneakers. Minimal jewellery. Easy, breezy, and completely Segula.\n\nThe key with palazzo pants is always the top — keep it fitted or semi-fitted to balance the volume below. Let the pants do the talking.` },
+  { title: "The Art of Building a Modest, Beautiful Wardrobe", date: "February 2025", category: "Life & Grace", excerpt: "Modesty is not the absence of beauty — it is beauty with intention. Here is how we think about it at Segula.", scripture: "Proverbs 31:25", body: `Modesty is one of the most misunderstood words in fashion. It has been reduced — unfairly — to a synonym for dull, shapeless, or outdated.\n\nAt Segula, we reject that definition completely.\n\n## What Modesty Actually Means\n\nModesty, at its core, is intentionality. It is the choice to dress in a way that honours your body, communicates your values, and draws attention to who you are — not just how you look.\n\nA modest wardrobe is not a wardrobe of limitations. It is a wardrobe of *choices*.\n\n## Start with Foundations\n\nEvery beautiful wardrobe begins with strong foundations. For us, that means:\n\n- Flowing midi and maxi skirts\n- Well-cut palazzo trousers\n- Long-sleeved blouses in quality fabrics\n- Layering pieces — cardigans, blazers, wraps\n\n## Invest in Quality over Quantity\n\nFewer, better pieces will serve you more faithfully than a wardrobe bursting with fast fashion. A single beautifully-made palazzo will outlast ten poorly-sewn alternatives — and will feel infinitely better to wear.\n\n## Colour and Fabric Matter\n\nModest dressing does not mean neutral dressing. Wear colour. Wear print. Wear texture. Just do it with intention — choosing what serves you, not what seeks to distract.\n\nWe are here to help you build that wardrobe, piece by treasured piece.` }
+];
+
+// ── WHATSAPP ICON SVG
+const WA_SVG = `<svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+// ── BADGE COLOR
+function getBadgeClass(cat) {
+  const c = (cat || '').toLowerCase();
+  if (c === 'signature') return 'signature';
+  if (c === 'custom') return 'custom';
+  if (c === 'new') return 'new';
+  if (c === 'thrifted') return 'thrifted';
+  return '';
+}
+
+// ── RENDER PRODUCTS
+let allProducts = [...PRODUCTS];
+let activeFilter = 'all';
+
+function renderProducts(filter) {
+  activeFilter = filter;
+  const grid = document.getElementById('products-grid');
+  const filtered = filter === 'all'
+    ? allProducts
+    : allProducts.filter(p => {
+        const cats = [p.category, p.gender].map(x => (x||'').toLowerCase());
+        return cats.some(c => c.includes(filter));
+      });
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="products-empty">No pieces in this category yet — check back soon.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const msg = encodeURIComponent(p.whatsapp_msg || `Hi Segula! I'm interested in ${p.title}.`);
+    const waLink = `https://wa.me/254756313220?text=${msg}`;
+    const badge = getBadgeClass(p.category);
+    const imgHtml = p.image
+      ? `<img src="${p.image}" alt="${p.title}" loading="lazy">`
+      : `<div class="product-img-placeholder">𝓢</div>`;
+    return `
+    <div class="product-card">
+      <div class="product-img">
+        ${imgHtml}
+        <span class="product-badge ${badge}">${p.category}</span>
+      </div>
+      <div class="product-info">
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <div class="product-footer">
+          <span class="product-price">${p.price}</span>
+          <a href="${waLink}" target="_blank" class="wa-btn">${WA_SVG} Order</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+// ── RENDER BLOG
+let allPosts = [...BLOG_POSTS];
+
+function getCatClass(cat) {
+  const c = (cat || '').toLowerCase();
+  if (c.includes('faith') || c.includes('devot')) return 'faith';
+  if (c.includes('style')) return 'style';
+  return 'life';
+}
+
+function renderBlog() {
+  const grid = document.getElementById('blog-grid');
+  if (!allPosts.length) {
+    grid.innerHTML = `<div class="products-empty">No posts yet — the journal is coming soon.</div>`;
+    return;
+  }
+  grid.innerHTML = allPosts.map((p, i) => {
+    const cls = getCatClass(p.category);
+    return `
+    <div class="blog-card" onclick="openPost(${i})">
+      <div class="blog-img"><div class="blog-img-placeholder">✦</div></div>
+      <span class="blog-cat ${cls}">${p.category}</span>
+      <h3>${p.title}</h3>
+      <p class="blog-excerpt">${p.excerpt}</p>
+      <div class="blog-meta">
+        <span class="blog-date">${p.date}</span>
+        <span class="blog-read">Read More →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── BLOG MODAL
+function openPost(i) {
+  const p = allPosts[i];
+  const cls = getCatClass(p.category);
+  document.getElementById('modal-cat').textContent = p.category;
+  document.getElementById('modal-cat').className = `blog-cat ${cls}`;
+  document.getElementById('modal-title').textContent = p.title;
+  const scripture = document.getElementById('modal-scripture');
+  if (p.scripture) {
+    scripture.textContent = p.scripture;
+    scripture.style.display = 'block';
+  } else {
+    scripture.style.display = 'none';
+  }
+  document.getElementById('modal-body').innerHTML = typeof marked !== 'undefined'
+    ? marked.parse(p.body || '')
+    : (p.body || '').replace(/\n/g, '<br>');
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('blog-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('blog-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── MOBILE MENU
+function closeMobile() {
+  document.querySelector('.mobile-menu').classList.remove('open');
+}
+
+// ── INIT
+renderProducts('all');
+renderBlog();
+</script>
+</body>
+</html>
