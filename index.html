@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<title>Segula – The Home of Treasured Possessions</title>
 <meta name="description" content="Segula – Elegance, Modesty & Grace. Curated fashion rooted in purpose. Palazzo pants, custom tailoring, personal styling. Based in Ongata Rongai, Kenya. Delivery nationwide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -593,26 +593,45 @@ footer { background: var(--brown-dark); padding: 60px 5vw 30px; color: rgba(250,
 </footer>
 
 <script>
-// ── PRODUCT DATA (loaded from products/ folder via fetch on live site)
-// On Netlify, these are read from the markdown files you manage in the CMS admin.
-// For local preview, we use inline data below.
+// ── PARSE FRONTMATTER from markdown files
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return { body: text };
+  const yaml = match[1];
+  const body = text.slice(match[0].length).trim();
+  const data = { body };
+  yaml.split('\n').forEach(line => {
+    const col = line.indexOf(':');
+    if (col === -1) return;
+    const key = line.slice(0, col).trim();
+    let val = line.slice(col + 1).trim().replace(/^["']|["']$/g, '');
+    if (val === 'true') val = true;
+    if (val === 'false') val = false;
+    data[key] = val;
+  });
+  return data;
+}
 
-const PRODUCTS = [
-  { title: "Classic Palazzo Pants", price: "KES 2,800", category: "Signature", gender: "Women", description: "Wide-leg, flowy, and effortlessly graceful — the Segula signature piece. Available in multiple fabrics and colours.", available: true, featured: true, whatsapp_msg: "Hi Segula! I'm interested in the Classic Palazzo Pants (KES 2,800). Please share available colours and sizes." },
-  { title: "Bespoke Maxi Dress", price: "From KES 4,500", category: "Custom", gender: "Women", description: "Custom-made to your measurements, fabric choice and vision. Your dream dress, realised.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'd like to order a Custom Bespoke Maxi Dress. Can we discuss fabric options and measurements?" },
-  { title: "Linen Shirt – Men's", price: "KES 1,800", category: "New", gender: "Men", description: "Breathable, modest, effortlessly polished. For the refined man who dresses with purpose.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Men's Linen Shirt (KES 1,800). What sizes are available?" },
-  { title: "Curated Vintage Blouse", price: "KES 950", category: "Thrifted", gender: "Women", description: "A beautiful thrift gem — unique, sustainable, and lovingly preserved.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Vintage Blouse (KES 950). Can you share more photos?" },
-  { title: "Palazzo + Matching Top Set", price: "From KES 5,800", category: "Custom", gender: "Women", description: "The full Segula look — co-ord palazzo pants with a tailored top, made to your spec.", available: true, featured: true, whatsapp_msg: "Hi Segula! I'd love a Custom Palazzo + Matching Top Set. Can we discuss fabric and colour options?" },
-  { title: "Bespoke Suit – Men's", price: "From KES 12,000", category: "Custom", gender: "Men", description: "Custom tailoring for the man who dresses with purpose and dignity. Sharp, modest, timeless.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in a Custom Men's Suit. Can we discuss measurements and fabric?" },
-  { title: "Modest Midi Skirt", price: "KES 1,600", category: "New", gender: "Women", description: "Knee-to-midi length, flowing silhouette. Perfect for church, work, or any occasion.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Modest Midi Skirt (KES 1,600). What colours and sizes are available?" },
-  { title: "Men's Kaftan / Dashiki", price: "KES 2,200", category: "New", gender: "Men", description: "Rooted in African heritage, elevated in finish. A statement of dignified, cultural grace.", available: true, featured: false, whatsapp_msg: "Hi Segula! I'm interested in the Men's Kaftan/Dashiki (KES 2,200). Please share available options." }
-];
+// ── FETCH FILES from a GitHub folder via API
+async function fetchFolder(folder) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/Mutisya74/Segul/contents/${folder}`);
+    if (!res.ok) return [];
+    const files = await res.json();
+    const mdFiles = files.filter(f => f.name.endsWith('.md'));
+    const contents = await Promise.all(
+      mdFiles.map(f => fetch(f.download_url).then(r => r.text()))
+    );
+    return contents.map(parseFrontmatter);
+  } catch (e) {
+    console.error('Fetch error:', e);
+    return [];
+  }
+}
 
-const BLOG_POSTS = [
-  { title: "What Does It Mean to Dress with Dignity?", date: "April 2025", category: "Faith & Fashion", excerpt: "Exploring the deeper connection between how we clothe ourselves and the posture of our hearts before God and the world.", scripture: "1 Peter 3:3–4", body: `There is something deeply intentional about the way we dress. Every morning, as we reach into our wardrobes, we are making a quiet statement — not just to the world, but to ourselves.\n\nAt Segula, we believe that clothing is never merely fabric. It is an expression of identity, of values, of the story we are living.\n\n## The Heart Behind the Hemline\n\nThe Apostle Peter wrote: *"Your beauty should not come from outward adornment... rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit."* (1 Peter 3:3–4)\n\nThis is not a call to dress plainly or to hide. It is an invitation to dress with purpose — to let what is on the outside reflect the grace that lives within.\n\n## Modesty Is Not a Limitation\n\nMany people misunderstand modesty as restriction. But we see it as freedom — freedom from the pressure to impress, freedom to move through the world with confidence that is not dependent on exposure.\n\nA well-cut palazzo pant that flows as you walk. A blouse that covers without hiding. A dress that makes you feel like yourself — that is Segula.\n\n## A Daily Practice\n\nDressing with dignity is a daily practice. It asks us to slow down, to be intentional, and to choose pieces that honour who we are becoming — not just who the world wants us to be.\n\nWe would love to walk this journey with you.` },
-  { title: "Styling Palazzo Pants for Every Occasion", date: "March 2025", category: "Style Guide", excerpt: "Our signature piece is more versatile than you think — from Sunday service to a soft evening dinner.", body: `The palazzo pant is the cornerstone of the Segula wardrobe — and for good reason. Wide, flowing, and inherently graceful, it is a garment that works harder than most people realise.\n\n## Sunday Service\n\nPair your palazzos with a fitted blouse or a modest peplum top. A neutral palette — cream, ivory, or soft brown — keeps things reverent without being plain. Add low block heels and a structured bag.\n\n## Work or Office\n\nA tailored blazer over a tucked-in top transforms palazzo pants into office-ready elegance. Choose structured fabrics like crepe or linen for a polished finish.\n\n## Evening Out\n\nThe palazzo is your secret evening weapon. A satin or flowy palazzo in a deep jewel tone, paired with a simple camisole top and heeled sandals, is effortlessly striking.\n\n## Casual Days\n\nOversized linen shirt, tucked in loosely at the front. White sneakers. Minimal jewellery. Easy, breezy, and completely Segula.\n\nThe key with palazzo pants is always the top — keep it fitted or semi-fitted to balance the volume below. Let the pants do the talking.` },
-  { title: "The Art of Building a Modest, Beautiful Wardrobe", date: "February 2025", category: "Life & Grace", excerpt: "Modesty is not the absence of beauty — it is beauty with intention. Here is how we think about it at Segula.", scripture: "Proverbs 31:25", body: `Modesty is one of the most misunderstood words in fashion. It has been reduced — unfairly — to a synonym for dull, shapeless, or outdated.\n\nAt Segula, we reject that definition completely.\n\n## What Modesty Actually Means\n\nModesty, at its core, is intentionality. It is the choice to dress in a way that honours your body, communicates your values, and draws attention to who you are — not just how you look.\n\nA modest wardrobe is not a wardrobe of limitations. It is a wardrobe of *choices*.\n\n## Start with Foundations\n\nEvery beautiful wardrobe begins with strong foundations. For us, that means:\n\n- Flowing midi and maxi skirts\n- Well-cut palazzo trousers\n- Long-sleeved blouses in quality fabrics\n- Layering pieces — cardigans, blazers, wraps\n\n## Invest in Quality over Quantity\n\nFewer, better pieces will serve you more faithfully than a wardrobe bursting with fast fashion. A single beautifully-made palazzo will outlast ten poorly-sewn alternatives — and will feel infinitely better to wear.\n\n## Colour and Fabric Matter\n\nModest dressing does not mean neutral dressing. Wear colour. Wear print. Wear texture. Just do it with intention — choosing what serves you, not what seeks to distract.\n\nWe are here to help you build that wardrobe, piece by treasured piece.` }
-];
+// ── LOAD ALL DATA
+let allProducts = [];
+let allPosts = [];
 
 // ── WHATSAPP ICON SVG
 const WA_SVG = `<svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
@@ -628,7 +647,6 @@ function getBadgeClass(cat) {
 }
 
 // ── RENDER PRODUCTS
-let allProducts = [...PRODUCTS];
 let activeFilter = 'all';
 
 function renderProducts(filter) {
@@ -678,7 +696,6 @@ function filterProducts(cat, btn) {
 }
 
 // ── RENDER BLOG
-let allPosts = [...BLOG_POSTS];
 
 function getCatClass(cat) {
   const c = (cat || '').toLowerCase();
@@ -744,9 +761,25 @@ function closeMobile() {
   document.querySelector('.mobile-menu').classList.remove('open');
 }
 
-// ── INIT
-renderProducts('all');
-renderBlog();
+// ── INIT — load from GitHub CMS files
+async function init() {
+  // Load products
+  document.getElementById('products-grid').innerHTML = '<div class="products-loading">Loading collections…</div>';
+  document.getElementById('blog-grid').innerHTML = '<div class="products-loading">Loading journal…</div>';
+
+  const [products, posts] = await Promise.all([
+    fetchFolder('products'),
+    fetchFolder('blog')
+  ]);
+
+  allProducts = products.filter(p => p.available !== false);
+  allPosts = posts;
+
+  renderProducts('all');
+  renderBlog();
+}
+
+init();
 </script>
 </body>
 </html>
