@@ -1,7 +1,7 @@
 ---
-title: Classic Palazzo Pants
+title: Green Palazzo Pants
 price: KES 1,800
-category: Signature
+category: Thrifted
 gender: Women
 description: Wide-leg, flowy, and effortlessly graceful — the Segula signature
   piece. Available in multiple fabrics and colours.
