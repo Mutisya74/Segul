@@ -1,9 +1,11 @@
 ---
 title: What Does It Mean to Dress with Dignity?
-date: 2025-04-01
+date: 2026-04-01T00:00:00.000+03:00
 category: Faith & Fashion
-excerpt: Exploring the deeper connection between how we clothe ourselves and the posture of our hearts before God and the world.
-scripture: "1 Peter 3:3-4"
+excerpt: Exploring the deeper connection between how we clothe ourselves and the
+  posture of our hearts before God and the world.
+image: /images/uploads/segula-logo.png
+scripture: 1 Peter 3:3-4
 ---
 
 There is something deeply intentional about the way we dress. Every morning, as we reach into our wardrobes, we are making a quiet statement — not just to the world, but to ourselves.
